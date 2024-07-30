@@ -121,6 +121,14 @@ public class LoaderOptions {
     denyList.add("org.springframework.aop.target.SingletonTargetSource");
     denyList.add("com.vaadin.data.util.NestedMethodProperty");
     denyList.add("com.vaadin.data.util.PropertysetItem");
+    denyList.add("org.springframework.beans.factory.config.PropertyPathFactoryBean");
+    denyList.add("org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor");
+    denyList.add("javax.management.BadAttributeValueExpException");
+    denyList.add("org.apache.commons.configuration.ConfigurationMap");
+    denyList.add("com.mchange.v2.c3p0.WrapperConnectionPoolDataSource");
+    denyList.add("com.mchange.v2.c3p0.JndiRefForwardingDataSource");
+    denyList.add("com.sun.rowset.JdbcRowSetImpl");
+    denyList.add("org.eclipse.jetty.plus.jndi.Resource");
   }
 
   /**
