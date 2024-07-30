@@ -678,6 +678,11 @@ public class Constructor extends SafeConstructor {
     Class<? extends Object> classForTag = typeTags.get(node.getTag());
     if (classForTag == null) {
       String name = node.getTag().getClassName();
+      if (isNameDenied(name)) {
+        throw new ConstructorException(null, null,
+            "Class is denied. (Remove from the deny list to continue) " + name,
+            node.getStartMark());
+      }
       Class<?> cl;
       try {
         cl = getClassForName(name);
@@ -689,6 +694,20 @@ public class Constructor extends SafeConstructor {
     } else {
       return classForTag;
     }
+  }
+
+  /**
+   * Check if the name of the class to be created contains a denied pattern
+   *
+   * @param name - class name to create
+   * @return true when the class should not be created
+   */
+  protected boolean isNameDenied(String name) {
+    for (String black : loadingConfig.getDenyList()) {
+      if (name.contains(black))
+        return true;
+    }
+    return false;
   }
 
   protected Class<?> getClassForName(String name) throws ClassNotFoundException {
